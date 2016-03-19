@@ -12,7 +12,8 @@ module.exports = {
     // completed schedules, 
     useraccount: {
       model: 'user',
-      unique: true
+      unique: true,
+      required: true
     },
     lectures: {
       collection: 'lecture',

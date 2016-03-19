@@ -19,7 +19,7 @@ module.exports = {
     },
     teacher: {
       model: 'teacher',
-      required: false
+      required: true 
     },
     lecture: {
       model: 'lecture',

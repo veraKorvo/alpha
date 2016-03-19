@@ -24,7 +24,18 @@ module.exports = {
       defaultsTo: false,
       required: true
     }
-
+  },
+  afterUpdate: function(values, cb) {
+    if (values.approved) {
+      // TODO 
+      // add the lecture to the schedule
+      // add the schedule to the student's schedules (or student to the
+      // schedule's students)
+      console.log("approved");
+      console.log("student", values.student);
+      console.log("schedule", values.schedule);
+    }
+    cb();
   }
 };
 
