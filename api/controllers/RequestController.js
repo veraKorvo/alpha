@@ -8,13 +8,14 @@
 module.exports = {
   show: function(req, res) {
     // if the user is teacher -> policy
-    console.log(req.session.User.teacheraccount);
-    /* Teacher.findOne(req.session.User.teacheraccount).populate('lectures').exec(function(err, lectures) {
-      if (err) return res.badRequest();
-      console.log(lectures);
+    // get given teacher's requests
+    var teacherId = req.param('id');
+    Lecture.find({teacher: teacherId}).populate('requests').exec(function(err, lectures) {
+      var result = _.reduce(lectures, function(a, b){
+        return {requests: a.requests.concat(b.requests)};
+      }, {requests: []});
+      return res.json(200, result);
     });
-    */
-    return res.ok();
   }
 };
 

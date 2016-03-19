@@ -24,6 +24,10 @@ module.exports = {
       collection: 'language',
       via: 'teachers',
       unique: true
+    },
+    schedules: {
+      collection: 'schedule',
+      via: 'teacher'
     }
   },
   afterCreate: function(values, cb) {

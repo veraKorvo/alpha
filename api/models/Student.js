@@ -12,7 +12,8 @@ module.exports = {
     // favorite teachers, favorite lectures, language of interest,
     useraccount: {
       model: 'user',
-      unique: true
+      unique: true,
+      required: true
     },
     schedules: {
       collection: 'schedule',

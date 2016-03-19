@@ -28,8 +28,16 @@ module.exports = {
     students: {
       collection: 'student',
       via: 'schedules'
+    },
+    isFilled: function() {
+      return !!this.lecture;
+    },
+    getDurationInMin: function() {
+      return (this.finish - this.begin)/1000;
+    },
+    isNotOverlapping: function(other) {
+      return (other.finish < this.begin || this.finish < other.begin);
     }
-
   }
 };
 

@@ -17,7 +17,8 @@ module.exports = {
       required: true
     },
     schedule: {
-      model: 'schedule'
+      model: 'schedule',
+      required: true
     },
     approved: {
       type: 'boolean',
@@ -27,13 +28,16 @@ module.exports = {
   },
   afterUpdate: function(values, cb) {
     if (values.approved) {
-      // TODO 
       // add the lecture to the schedule
       // add the schedule to the student's schedules (or student to the
       // schedule's students)
-      console.log("approved");
-      console.log("student", values.student);
-      console.log("schedule", values.schedule);
+      console.log("schedule approved");
+      Schedule.findOne(values.schedule, function(err, schedule) {
+        if (err) return cb(err);
+        schedule.lecture = values.lecture;
+        schedule.students.add(values.student);
+        schedule.save();
+      });
     }
     cb();
   }
