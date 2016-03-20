@@ -1,15 +1,17 @@
 /**
  * Student.js
  *
- * @description :: TODO: You might write a short summary of how this model works and what it represents here.
- * @docs        :: http://sailsjs.org/documentation/concepts/models-and-orm/models
+ * @description :: Added fields to support student activities. Not using html
+ *                 forms to perform CU actions(D is not allowed)
+ * @collections :: schedules, groups
  */
 
 module.exports = {
   schema: true,
 
   attributes: {
-    // favorite teachers, favorite lectures, language of interest,
+    // TODO features to be implemented: 
+    // favorite teachers, favorite lectures, language of interest, ...
     useraccount: {
       model: 'user',
       unique: true,
