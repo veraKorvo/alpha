@@ -20,6 +20,29 @@ module.exports = {
       });
     });
     return res.ok();
+  },
+  create: function (req, res, next) {
+    var data = {
+      begin: new Date(req.param('begin')),
+      finish: new Date(req.param('finish'))
+    };
+    User.findOne(req.session.userId, function (err, user) {
+      // TODO Error handling
+      if (err) return next(err);
+      if (!user || !user.teacheraccount) return next(new Error('user related error'));
+      Schedule.find({teacher: user.teacheraccount}, function (err, schedules) {
+        if (err) return next(err);
+        // check if the schedule overlaps with predefined schedules
+        if (! _.every(schedules, function(schedule) { return schedule.isNotOverlapping(data); })) {
+          return next(new Error('Schedule Overlaps'));
+        }
+        // create schedule
+        Schedule.create(_.extend(data, {teacher: user.teacheraccount}), function (err, createdSchedule) {
+          if (err) return next(err);
+          return res.ok();
+        });
+      });
+    });
   }
 };
 

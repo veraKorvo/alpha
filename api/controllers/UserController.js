@@ -8,6 +8,8 @@
 var passport = require('passport');
 
 module.exports = {
+  signup: function (req, res) {
+  },
   signin: function (req, res) {
     passport.authenticate('local', function (err, user, info) {
       if ((err) || (!user)) {
@@ -15,7 +17,7 @@ module.exports = {
         return res.send({ message: info.message });
       }
       req.session.authenticated = true;
-      req.session.User = user; //TODO save the entire user instance? or just the id?
+      req.session.userId = user.id; //TODO save the entire user instance? or just the id?
       return res.ok();
     })(req, res);
   },
@@ -25,8 +27,9 @@ module.exports = {
     }
     return res.ok();
   },
+  // authentication test code
   stat: function (req, res) {
-    var info = req.session.authenticated ? req.session.User : "not signed in";
+    var info = req.session.authenticated ? req.session.userId : "not signed in";
     return res.send({ message: info });
   }
 	

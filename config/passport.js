@@ -13,7 +13,6 @@ passport.use(new LocalStrategy({usernameField: 'email'}, function (email, passwo
       // user not found;
       return done(null, false, {message: '1Credentials not recognized'});
     }
-    console.log(user, password);
     bcrypt.compare(password, user.password, function (err, result) {
       if (!result) {
         // wrong password
