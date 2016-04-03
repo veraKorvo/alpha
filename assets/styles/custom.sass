@@ -1,0 +1,50 @@
+.custom-outer
+  @include outer-container
+
+.custom-container
+  @include span-columns(10)
+  @include shift(1)
+
+.custom-centered
+  @include outer-container(400px)
+  margin-bottom: 4em
+  @include media(max-width 768px)
+    @include span-columns(12 of 12)
+
+hr.style11
+  height: 6px
+  background: url(http://ibrahimjabbari.com/english/images/hr-11.png) repeat-x 0 0
+  border: 0
+
+hr.style12
+  height: 6px
+  background: url(http://ibrahimjabbari.com/english/images/hr-12.png) repeat-x 0 0
+  border: 0
+
+hr.style13
+  height: 10px
+  border: 0
+  box-shadow: 0 10px 10px -10px #8c8b8b inset
+
+hr.style14
+  border: 0
+  height: 1px
+  background-image: linear-gradient(to left, #f0f0f0, #8c8b8b, #f0f0f0)
+
+
+//test code
+#main
+  @include outer-container(800px)
+
+#top-row
+  @include span-columns(12)
+
+#middle-row
+  @include span-columns(9 of 12)
+  @include media(max-width 768px)
+    @include span-columns(12 of 12)
+
+#bottom-row
+  @include span-columns(3 of 12)
+  @include media(max-width 768px)
+    @include span-columns(12 of 12)

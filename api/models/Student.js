@@ -33,7 +33,7 @@ module.exports = {
         return;
       }
       user.studentaccount = values.id;
-      user.save(function (err, _) {
+      user.save(function (err) {
         if (err) console.log(err);
         cb();
       });

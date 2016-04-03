@@ -38,7 +38,7 @@ module.exports = {
         return;
       }
       user.teacheraccount = values.id;
-      user.save(function (err, _) {
+      user.save(function (err) {
         if (err) console.log(err);
         cb();
       });
